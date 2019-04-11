@@ -4,5 +4,8 @@
   "main": "index.js",
   "repository": "https://github.com/pedroapfilho/2captcha-js.git",
   "author": "Pedro Filho <pedro@filho.me>",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "request-promise": "^4.2.4"
+  }
 }
