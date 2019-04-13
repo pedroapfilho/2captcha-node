@@ -1,8 +1,8 @@
 {
-  "name": "2captcha-js",
+  "name": "2captcha-node",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/pedroapfilho/2captcha-js.git",
+  "repository": "https://github.com/pedroapfilho/2captcha-node.git",
   "author": "Pedro Filho <pedro@filho.me>",
   "license": "MIT",
   "dependencies": {
