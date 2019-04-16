@@ -1,89 +1,77 @@
 import rp from 'request-promise'
 
-const timeoutDelay = (ms) => new Promise((res) => setTimeout(res, ms));
+const captcha = key => {
+  const postCaptcha = async image => {
+    const options = {
+      method: 'POST',
+      url: 'http://2captcha.com/in.php',
+      qs: {
+        key: key,
+        json: '1',
+        method: 'base64'
+      },
+      headers: {
+        'cache-control': 'no-cache',
+        'content-type': 'multipart/form-data'
+      },
+      formData: {
+        body: image
+      }
+    }
 
-const captcha = (key) => {
-	const MAX_TRIES_POST = 5;
-	const MAX_TRIES_GET = 10;
+    try {
+      const postRequest = await rp(options)
 
-	let triesPost = 0;
-	let triesGet = 0;
-	let captchaId;
+      const JSONPost = JSON.parse(postRequest)
 
-	const postCaptcha = async (image) => {
-		const options = {
-			method: 'POST',
-			url: 'http://2captcha.com/in.php',
-			qs: {
-				key: key,
-				json: '1',
-				method: 'base64'
-			},
-			headers: {
-				'cache-control': 'no-cache',
-				'content-type': 'multipart/form-data'
-			},
-			formData: {
-				body: image
-			},	
-    		json: true
-		}
+      const captchaID = JSONPost.request
 
-        try {
-			const result = await rp(options);
-			captchaId = result.request;
-        } catch(error) {
-            if (triesPost < MAX_TRIES_POST) {
-                triesPost++;
-                return postCaptcha(image);
-			}
+      return captchaID
+    } catch (e) {
+      throw new Error(e)
+    }
+  }
 
-			return error;
-        }
-	}
+  const getCaptcha = async id => {
+    const options = {
+      method: 'GET',
+      url: 'http://2captcha.com/res.php',
+      qs: {
+        key: key,
+        action: 'get',
+        id,
+        json: '1'
+      }
+    }
 
-	const getCaptcha = (id) => {
-		const options = {
-			method: 'GET',
-			url: 'http://2captcha.com/res.php',
-			qs: {
-				key: key,
-				action: 'get',
-				id,
-				json: '1'
-			},	
-    		json: true
-		}
-		
-		try {
-			const result = await rp(options);
-			
-			if (result.status !== 1 && triesGet < MAX_TRIES_GET) {
-				triesGet++;
-				timeoutDelay(3000);
-                return getCaptcha(id);
-			}
-			return result.request;
-        } catch(error) {
-            if (triesGet < MAX_TRIES_GET) {
-				triesGet++;
-				timeoutDelay(3000);
-                return getCaptcha(id);
-			}
+    try {
+      const getRequest = await rp(options)
 
-			return error;
-        }
+      const JSONGet = JSON.parse(getRequest)
 
-	}
+      if (JSONGet.status === 1) {
+        return JSONGet.request
+      }
 
-	const solveCaptcha = async (image) => {
-		await postCaptcha(image);
-		return await getCaptcha(captchaId);
-	}
+      await new Promise(resolve => setTimeout(resolve, 1000))
+
+      return getCaptcha(id)
+    } catch (e) {
+      throw new Error(e)
+    }
+  }
+
+  const solveCaptcha = async image => {
+    const id = await postCaptcha(image)
+
+    await new Promise(resolve => setTimeout(resolve, 5000))
+
+    return getCaptcha(id)
+  }
+
+  return {
+    solve: solveCaptcha
+  }
 }
 
-return {
-	solve: solveCaptcha
-}
-
-export default captcha;
+export default captcha
