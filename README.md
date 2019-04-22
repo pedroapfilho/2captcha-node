@@ -14,7 +14,7 @@ You will need a `2Captcha API key`
 
 ## Installation:
 
-```js
+```
 yarn add 2captcha-node
 ```
 
