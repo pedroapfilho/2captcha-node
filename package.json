@@ -1,41 +1,45 @@
 {
-	"name": "2captcha-node",
-	"version": "1.0.1",
-	"description": "Lightweight NodeJS wrapper to solve captchas with 2captcha",
-	"main": "dist/index.js",
-	"repository": "https://github.com/pedroapfilho/2captcha-node.git",
-	"keywords": [
-		"2captcha",
-		"captcha",
-		"wrapper",
-		"solve"
-	],
-	"bugs": {
-		"url": "https://github.com/pedroapfilho/2captcha-node/issues"
-	},
-	"author": "Pedro Filho <pedro@filho.me>",
-	"license": "MIT",
-	"homepage": "https://github.com/pedroapfilho/2captcha-node#readme",
-	"scripts": {
-		"eslint": "node_modules/.bin/eslint",
-		"babel": "node_modules/.bin/babel",
-		"build": "yarn babel src -d dist/"
-	},
-	"dependencies": {
-		"@babel/polyfill": "^7.4.0",
-		"request": "^2.88.0",
-		"request-promise": "^4.2.4"
-	},
-	"devDependencies": {
-		"@babel/cli": "^7.2.3",
-		"@babel/core": "^7.3.4",
-		"@babel/node": "^7.2.2",
-		"@babel/preset-env": "^7.3.4",
-		"eslint": "^5.15.0",
-		"eslint-config-standard": "^12.0.0",
-		"eslint-plugin-import": "^2.14.0",
-		"eslint-plugin-node": "^8.0.1",
-		"eslint-plugin-promise": "^4.0.1",
-		"eslint-plugin-standard": "^4.0.0"
-	}
+  "name": "2captcha-node",
+  "version": "1.0.2",
+  "description": "Lightweight NodeJS wrapper to solve captchas with 2captcha",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "repository": "https://github.com/pedroapfilho/2captcha-node.git",
+  "keywords": [
+    "2captcha",
+    "captcha",
+    "wrapper",
+    "solve"
+  ],
+  "bugs": {
+    "url": "https://github.com/pedroapfilho/2captcha-node/issues"
+  },
+  "author": "Pedro Filho <pedro@filho.me>",
+  "license": "MIT",
+  "homepage": "https://github.com/pedroapfilho/2captcha-node#readme",
+  "scripts": {
+    "eslint": "node_modules/.bin/eslint",
+    "babel": "node_modules/.bin/babel",
+    "build": "yarn babel src -d dist/",
+    "prepublish": "yarn build"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.4.0",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.3.4",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.3.4",
+    "eslint": "^5.15.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-standard": "^4.0.0"
+  }
 }
