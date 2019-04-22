@@ -31,7 +31,7 @@ const captcha = captchaSolver("your-api-key");
 It'll return a function, and you'll be able to use the "solve" inside of it
 
 ```js
-const solvedCaptcha = captcha.solve("base64-image");
+const solvedCaptcha = await captcha.solve("base64-image");
 ```
 
 And this solvedCaptcha will be the string of your resolved captcha

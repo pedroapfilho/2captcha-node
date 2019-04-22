@@ -1,6 +1,6 @@
 {
 	"name": "2captcha-node",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Lightweight NodeJS wrapper to solve captchas with 2captcha",
 	"main": "dist/index.js",
 	"repository": "https://github.com/pedroapfilho/2captcha-node.git",
