@@ -1,10 +1,16 @@
 import rp from 'request-promise'
 
-const captcha = key => {
+const postUrl = 'http://2captcha.com/in.php'
+
+const getUrl = 'http://2captcha.com/res.php'
+
+const timer = ms => new Promise(resolve => setTimeout(resolve, ms))
+
+const captchaSolver = key => {
   const postCaptcha = async image => {
     const options = {
       method: 'POST',
-      url: 'http://2captcha.com/in.php',
+      url: postUrl,
       qs: {
         key: key,
         json: '1',
@@ -35,7 +41,7 @@ const captcha = key => {
   const getCaptcha = async id => {
     const options = {
       method: 'GET',
-      url: 'http://2captcha.com/res.php',
+      url: getUrl,
       qs: {
         key: key,
         action: 'get',
@@ -53,7 +59,7 @@ const captcha = key => {
         return JSONGet.request
       }
 
-      await new Promise(resolve => setTimeout(resolve, 1000))
+      await timer(1000)
 
       return getCaptcha(id)
     } catch (e) {
@@ -64,7 +70,7 @@ const captcha = key => {
   const solveCaptcha = async image => {
     const id = await postCaptcha(image)
 
-    await new Promise(resolve => setTimeout(resolve, 5000))
+    await timer(5000)
 
     return getCaptcha(id)
   }
@@ -74,4 +80,4 @@ const captcha = key => {
   }
 }
 
-export default captcha
+export default captchaSolver
