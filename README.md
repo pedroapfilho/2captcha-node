@@ -28,7 +28,7 @@ import captchaSolver from "2captcha-node";
 const captcha = captchaSolver("your-api-key");
 ```
 
-It'll return a function, and you'll be able to use the "solve" inside of it
+It'll return an object with the `solve` function, and you'll be able to use it inside of your script
 
 ```js
 const solvedCaptcha = await captcha.solve("base64-image");
