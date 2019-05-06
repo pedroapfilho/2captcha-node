@@ -1,6 +1,6 @@
-# 2Captcha Node Wrapper
+# 2Captcha Node
 
-Just a lightweight 2Captcha Node Wrapper
+Just a lightweight captcha solver using 2Captcha
 
 <p align="center">
   <a href="https://www.npmjs.com/package/2captcha-node"><img alt="NPM version" src="https://badge.fury.io/js/2captcha-node.svg"></a>
