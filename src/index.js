@@ -1,4 +1,4 @@
-import rp from 'request-promise'
+import rp from 'request-promise-native'
 
 const postUrl = 'http://2captcha.com/in.php'
 
