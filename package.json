@@ -20,10 +20,11 @@
   "license": "MIT",
   "homepage": "https://github.com/pedroapfilho/2captcha-node#readme",
   "scripts": {
+    "clean": "rimraf lib",
     "eslint": "node_modules/.bin/eslint",
     "babel": "node_modules/.bin/babel",
-    "build": "yarn babel src -d dist/",
-    "prepublish": "yarn build"
+    "build": "yarn babel src -d dist",
+    "prepublish": "yarn clean && yarn build"
   },
   "dependencies": {
     "@babel/polyfill": "^7.4.0",
@@ -40,6 +41,7 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-node": "^8.0.1",
     "eslint-plugin-promise": "^4.0.1",
-    "eslint-plugin-standard": "^4.0.0"
+    "eslint-plugin-standard": "^4.0.0",
+    "rimraf": "^2.6.3"
   }
 }
