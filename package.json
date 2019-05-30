@@ -1,7 +1,7 @@
 {
   "name": "2captcha-node",
   "version": "1.0.4",
-  "description": "Lightweight NodeJS wrapper to solve captchas with 2captcha",
+  "description": "A NodeJS wrapper to solve image captchas with 2captcha",
   "main": "dist/index.js",
   "files": [
     "dist"
@@ -27,14 +27,12 @@
     "prepublish": "yarn clean && yarn build"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.4.0",
     "request": "^2.88.0",
     "request-promise-native": "^1.0.7"
   },
   "devDependencies": {
     "@babel/cli": "^7.2.3",
     "@babel/core": "^7.3.4",
-    "@babel/node": "^7.2.2",
     "@babel/preset-env": "^7.3.4",
     "eslint": "^5.15.0",
     "eslint-config-standard": "^12.0.0",
