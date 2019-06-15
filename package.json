@@ -1,6 +1,6 @@
 {
   "name": "2captcha-node",
-  "version": "1.0.8",
+  "version": "1.0.9",
   "description": "A NodeJS wrapper to solve image captchas with 2captcha",
   "main": "dist/index.js",
   "files": [
@@ -20,14 +20,13 @@
   "license": "MIT",
   "homepage": "https://github.com/pedroapfilho/2captcha-node#readme",
   "scripts": {
-    "clean": "rimraf lib",
+    "clean": "rimraf dist",
     "eslint": "node_modules/.bin/eslint",
     "babel": "node_modules/.bin/babel",
     "build": "yarn babel src -d dist",
     "prepublish": "yarn clean && yarn build"
   },
   "dependencies": {
-    "core-js": "^3.1.4",
     "request": "^2.88.0",
     "request-promise-native": "^1.0.7"
   },
