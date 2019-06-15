@@ -27,7 +27,6 @@
     "prepublish": "yarn clean && yarn build"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.4.4",
     "request": "^2.88.0",
     "request-promise-native": "^1.0.7"
   },
