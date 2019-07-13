@@ -35,4 +35,10 @@ const solvedCaptcha = await captcha.solve("base64-image");
 
 And this solvedCaptcha will be the string of your resolved captcha
 
+You can use the `balance` function too, to see your balance at 2Captcha
+
+```js
+const balance = await captcha.balance();
+```
+
 And ya, that's it
