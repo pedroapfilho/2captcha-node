@@ -4,8 +4,7 @@ Just a lightweight captcha solver using 2Captcha
 
 <p align="center">
   <a href="https://www.npmjs.com/package/2captcha-node"><img alt="NPM version" src="https://badge.fury.io/js/2captcha-node.svg"></a>
-  <a href="https://travis-ci.com/pedroapfilho/2captcha-node"><img alt="TRAVIS version" src="https://travis-ci.com/pedroapfilho/2captcha-node.svg?branch=master"></a> 
-  <a href="https://snyk.io/test/github/pedroapfilho/2captcha-node"><img alt="SNYK tests" src="https://snyk.io/test/github/pedroapfilho/2captcha-node/badge.svg"></a> 
+  <a href="https://travis-ci.com/pedroapfilho/2captcha-node"><img alt="TRAVIS version" src="https://travis-ci.com/pedroapfilho/2captcha-node.svg?branch=master"></a>
 </p>
 
 ## Prerequisites:
