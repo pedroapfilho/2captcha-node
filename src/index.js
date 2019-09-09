@@ -1,104 +1,104 @@
-import rp from "request-promise-native";
+import rp from 'request-promise-native'
 
-const postUrl = "http://2captcha.com/in.php";
+const postUrl = 'http://2captcha.com/in.php'
 
-const getUrl = "http://2captcha.com/res.php";
+const getUrl = 'http://2captcha.com/res.php'
 
-const timer = ms => new Promise(resolve => setTimeout(resolve, ms));
+const timer = ms => new Promise(resolve => setTimeout(resolve, ms))
 
 const captchaSolver = key => {
   const postCaptcha = async image => {
     const options = {
-      method: "POST",
+      method: 'POST',
       url: postUrl,
       qs: {
         key: key,
-        json: "1",
-        method: "base64"
+        json: '1',
+        method: 'base64'
       },
       headers: {
-        "cache-control": "no-cache",
-        "content-type": "multipart/form-data"
+        'cache-control': 'no-cache',
+        'content-type': 'multipart/form-data'
       },
       formData: {
         body: image
       }
-    };
+    }
 
     try {
-      const postRequest = await rp(options);
+      const postRequest = await rp(options)
 
-      const JSONPost = JSON.parse(postRequest);
+      const JSONPost = JSON.parse(postRequest)
 
-      return JSONPost.request;
+      return JSONPost.request
     } catch (e) {
-      throw new Error(e);
+      throw new Error(e)
     }
-  };
+  }
 
   const getCaptcha = async id => {
     const options = {
-      method: "GET",
+      method: 'GET',
       url: getUrl,
       qs: {
         key: key,
-        action: "get",
+        action: 'get',
         id,
-        json: "1"
+        json: '1'
       }
-    };
+    }
 
     try {
-      const getRequest = await rp(options);
+      const getRequest = await rp(options)
 
-      const JSONGet = JSON.parse(getRequest);
+      const JSONGet = JSON.parse(getRequest)
 
       if (JSONGet.status === 1) {
-        return JSONGet.request;
+        return JSONGet.request
       }
 
-      await timer(1000);
+      await timer(1000)
 
-      return getCaptcha(id);
+      return getCaptcha(id)
     } catch (e) {
-      throw new Error(e);
+      throw new Error(e)
     }
-  };
+  }
 
   const solveCaptcha = async image => {
-    const id = await postCaptcha(image);
+    const id = await postCaptcha(image)
 
-    await timer(5000);
+    await timer(5000)
 
-    return getCaptcha(id);
-  };
+    return getCaptcha(id)
+  }
 
   const getBalance = async () => {
     const options = {
-      method: "GET",
+      method: 'GET',
       url: getUrl,
       qs: {
         key: key,
-        action: "getbalance",
-        json: "1"
+        action: 'getbalance',
+        json: '1'
       }
-    };
+    }
 
     try {
-      const getBalance = await rp(options);
+      const getBalance = await rp(options)
 
-      const JSONBalance = JSON.parse(getBalance);
+      const JSONBalance = JSON.parse(getBalance)
 
-      return JSONBalance.request;
+      return JSONBalance.request
     } catch (e) {
-      throw new Error(e);
+      throw new Error(e)
     }
-  };
+  }
 
   return {
     solve: solveCaptcha,
     balance: getBalance
-  };
-};
+  }
+}
 
-export default captchaSolver;
+export default captchaSolver
