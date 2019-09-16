@@ -1,6 +1,6 @@
 {
   "name": "2captcha-node",
-  "version": "1.1.5",
+  "version": "1.1.6",
   "description": "A NodeJS wrapper to solve image captchas with 2captcha",
   "main": "dist/index.js",
   "files": [
