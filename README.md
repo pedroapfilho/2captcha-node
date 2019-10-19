@@ -21,6 +21,8 @@ npm install
 
 ## Usage
 
+### Solve image captchas
+
 Set up your api key:
 
 ```js
@@ -36,6 +38,26 @@ const solvedCaptcha = await captcha.solve("base64-image");
 ```
 
 And this solvedCaptcha will be the string of your resolved captcha
+
+### Solve reCaptcha
+
+```js
+import captchaSolver from "2captcha-node";
+
+const reCaptchaToken = captchaSolver("your-api-key");
+const solvedCaptcha = await captcha.solveReCaptcha({
+  googlekey: 'googlekey', // Value of k or data-sitekey parameter you found on page
+  pageurl:  'pageurl' // Full URL of the page where you see the ReCaptcha
+})
+
+// Use reCaptchaToken as a value inside "#g-recaptcha-response"
+// which is an invisible textarea
+
+// So in client side you can do something like
+document.getElementById("g-recaptcha-response").innerHTML = reCaptchaToken;
+```
+
+### View balance
 
 You can use the `balance` function too, to see your balance at 2Captcha
 
@@ -53,6 +75,8 @@ const balance = await captcha.balance();
 ## 🤝 Contributing
 
 Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/pedroapfilho/2captcha-node/issues).
+
+To start developing for this project you can follow [CONTRIBUTING.md](https://github.com/pedroapfilho/2captcha-node/blob/master/CONTRIBUTING.md)
 
 ## Show your support
 
