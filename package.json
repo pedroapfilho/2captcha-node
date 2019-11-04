@@ -21,9 +21,7 @@
   "homepage": "https://github.com/pedroapfilho/2captcha-node#readme",
   "scripts": {
     "clean": "rimraf dist",
-    "eslint": "node_modules/.bin/eslint",
-    "babel": "node_modules/.bin/babel",
-    "build": "yarn babel src -d dist",
+    "build": "tsc",
     "prepublish": "yarn clean && yarn build"
   },
   "dependencies": {
@@ -31,15 +29,10 @@
     "request-promise-native": "^1.0.7"
   },
   "devDependencies": {
-    "@babel/cli": "^7.6.2",
-    "@babel/core": "^7.6.2",
-    "@babel/preset-env": "^7.6.2",
-    "eslint": "^6.5.1",
-    "eslint-config-standard": "^14.1.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-node": "^10.0.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.0",
-    "rimraf": "^3.0.0"
+    "@types/request": "^2.48.3",
+    "@types/request-promise-native": "^1.0.17",
+    "rimraf": "^3.0.0",
+    "typescript": "^3.6.4",
+    "xo": "^0.25.3"
   }
 }
