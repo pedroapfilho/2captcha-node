@@ -7,7 +7,7 @@ const getUrl = "http://2captcha.com/res.php";
 const timer = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
 const captchaSolver = (key: string) => {
-  const postCaptcha = async image => {
+  const postCaptcha = async (image: string) => {
     const options = {
       method: "POST",
       url: postUrl,
@@ -36,7 +36,7 @@ const captchaSolver = (key: string) => {
     }
   };
 
-  const getCaptcha = async (id: string) => {
+  const getCaptcha = async (id: string): Promise<string> => {
     const options = {
       method: "GET",
       url: getUrl,
@@ -65,7 +65,7 @@ const captchaSolver = (key: string) => {
     }
   };
 
-  const solveCaptcha = async image => {
+  const solveCaptcha = async (image: string) => {
     const id = await postCaptcha(image);
 
     await timer(5000);
