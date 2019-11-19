@@ -36,7 +36,10 @@ const captchaSolver = (key: string) => {
     }
   };
 
-  const getCaptcha = async (id: string): Promise<string> => {
+  const getCaptcha = async (
+    id: string,
+    maxAttempts: number
+  ): Promise<string> => {
     const options = {
       method: "GET",
       url: getUrl,
@@ -47,6 +50,13 @@ const captchaSolver = (key: string) => {
         json: "1"
       }
     };
+
+    if (!maxAttempts)
+      throw new Error(
+        "This request has reached the maximum number of attempts"
+      );
+
+    let attempts = maxAttempts;
 
     try {
       const getRequest = await rp(options);
@@ -59,18 +69,20 @@ const captchaSolver = (key: string) => {
 
       await timer(1000);
 
-      return getCaptcha(id);
+      attempts -= 1;
+
+      return getCaptcha(id, attempts);
     } catch (e) {
       throw new Error(e);
     }
   };
 
-  const solveCaptcha = async (image: string) => {
+  const solveCaptcha = async (image: string, maxAttempts: number = 20) => {
     const id = await postCaptcha(image);
 
     await timer(5000);
 
-    return getCaptcha(id);
+    return getCaptcha(id, maxAttempts);
   };
 
   const getBalance = async () => {
