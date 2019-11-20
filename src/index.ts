@@ -73,7 +73,7 @@ const captchaSolver = (key: string) => {
     }
   };
 
-  const solveCaptcha = async ({ image, maxAttempts = 20 }: ISolveCaptcha) => {
+  const solveCaptcha = async ({ image, maxAttempts = 60 }: ISolveCaptcha) => {
     const id = await postCaptcha(image);
 
     await timer(5000);
