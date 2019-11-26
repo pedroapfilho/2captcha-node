@@ -1,4 +1,5 @@
 import rp from "request-promise-native";
+import { ISolveCaptcha } from "./types";
 
 const postUrl = "http://2captcha.com/in.php";
 
