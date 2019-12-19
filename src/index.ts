@@ -82,7 +82,7 @@ const captchaSolver = (key: string) => {
     return getCaptcha(id, maxAttempts);
   };
 
-  const getBalance = async () => {
+  const getBalance = async (): Promise<string> => {
     const options = {
       method: "GET",
       url: getUrl,
