@@ -1,0 +1,55 @@
+{
+  "name": "2captcha-node",
+  "version": "1.3.6",
+  "description": "A NodeJS wrapper to solve image captchas with 2captcha",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "repository": "https://github.com/pedroapfilho/2captcha-node.git",
+  "keywords": [
+    "2captcha",
+    "captcha",
+    "wrapper",
+    "solve"
+  ],
+  "bugs": {
+    "url": "https://github.com/pedroapfilho/2captcha-node/issues"
+  },
+  "author": "Pedro Filho <pedro@filho.me>",
+  "license": "MIT",
+  "homepage": "https://github.com/pedroapfilho/2captcha-node#readme",
+  "module": "dist/captcha-node.esm.js",
+  "devDependencies": {
+    "@types/request": "^2.48.4",
+    "@types/request-promise-native": "^1.0.17",
+    "husky": "^4.2.1",
+    "tsdx": "^0.12.3",
+    "tslib": "^1.10.0",
+    "typescript": "^3.7.5"
+  },
+  "typings": "dist/index.d.ts",
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build"
+  },
+  "peerDependencies": {},
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "dependencies": {
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.8"
+  }
+}
