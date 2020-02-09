@@ -33,7 +33,7 @@ It'll return an object with the `solve` function, and you'll be able to use it i
 
 ```js
 const options = {
-  image: 'base64-image', // Optional
+  image: 'base64-image',
   maxAttempts: 60, // Optional
 };
 
