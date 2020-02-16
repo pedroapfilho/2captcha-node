@@ -37,10 +37,10 @@ const options = {
   maxAttempts: 60, // Optional
 };
 
-const solvedCaptcha = await captcha.solve(options);
+const { id, text} = await captcha.solve(options);
 ```
 
-And this solvedCaptcha will be the string of your resolved captcha
+And this solvedCaptcha will return object, with captcha id and captcha text
 
 You can use the `balance` function too, to see your balance at 2Captcha
 

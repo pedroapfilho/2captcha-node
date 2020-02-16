@@ -1,5 +1,5 @@
 import rp from 'request-promise-native';
-import { ISolveCaptcha } from './types';
+import { ISolveCaptcha, ResponseCaptcha } from './types';
 
 const postUrl = 'http://2captcha.com/in.php';
 
@@ -40,7 +40,7 @@ const captchaSolver = (key: string) => {
   const getCaptcha = async (
     id: string,
     maxAttempts: number
-  ): Promise<string> => {
+  ): Promise<ResponseCaptcha> => {
     const options = {
       method: 'GET',
       url: getUrl,
@@ -63,7 +63,10 @@ const captchaSolver = (key: string) => {
       const JSONGet = JSON.parse(getRequest);
 
       if (JSONGet.status === 1) {
-        return JSONGet.request;
+        return {
+          id: id,
+          text: JSONGet.request
+        };
       }
 
       await timer(1000);
