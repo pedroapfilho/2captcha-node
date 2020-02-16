@@ -48,6 +48,12 @@ You can use the `balance` function too, to see your balance at 2Captcha
 const balance = await captcha.balance();
 ```
 
+You can use the Report Captcha is valid or not.
+
+```js
+await captcha.report(id, isValid);
+```
+
 ## Author
 
 👤 **Pedro Filho <pedro@filho.me>**
