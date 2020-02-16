@@ -104,9 +104,33 @@ const captchaSolver = (key: string) => {
     }
   };
 
+  const reportCaptcha = async (id: string, isValid: boolean): Promise<boolean> => {
+    const options = {
+      method: "GET",
+      url: getUrl,
+      qs: {
+        key: key,
+        action: isValid ? "reportgood":"reportbad",
+        json: "1",
+        id: id
+      }
+    };
+
+    try {
+      const reportResponse = await rp(options);
+
+      const JSONBalance = JSON.parse(reportResponse);
+
+      return JSONBalance.request ? true:false;
+    } catch (e) {
+      throw new Error(e);
+    }
+  };
+
   return {
     solve: solveCaptcha,
     balance: getBalance,
+    report: reportCaptcha,
   };
 };
 
