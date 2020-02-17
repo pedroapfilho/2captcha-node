@@ -1,5 +1,5 @@
 import rp from 'request-promise-native';
-import { ISolveCaptcha } from './types';
+import { ISolveCaptcha, ResponseCaptcha } from './types';
 
 const postUrl = 'http://2captcha.com/in.php';
 
@@ -40,7 +40,7 @@ const captchaSolver = (key: string) => {
   const getCaptcha = async (
     id: string,
     maxAttempts: number
-  ): Promise<string> => {
+  ): Promise<ResponseCaptcha> => {
     const options = {
       method: 'GET',
       url: getUrl,
@@ -63,7 +63,10 @@ const captchaSolver = (key: string) => {
       const JSONGet = JSON.parse(getRequest);
 
       if (JSONGet.status === 1) {
-        return JSONGet.request;
+        return {
+          id: id,
+          text: JSONGet.request
+        };
       }
 
       await timer(1000);
@@ -104,9 +107,33 @@ const captchaSolver = (key: string) => {
     }
   };
 
+  const reportCaptcha = async (id: string, isValid: boolean): Promise<boolean> => {
+    const options = {
+      method: "GET",
+      url: getUrl,
+      qs: {
+        key: key,
+        action: isValid ? "reportgood":"reportbad",
+        json: "1",
+        id: id
+      }
+    };
+
+    try {
+      const reportResponse = await rp(options);
+
+      const JSONBalance = JSON.parse(reportResponse);
+
+      return JSONBalance.request ? true:false;
+    } catch (e) {
+      throw new Error(e);
+    }
+  };
+
   return {
     solve: solveCaptcha,
     balance: getBalance,
+    report: reportCaptcha,
   };
 };
 
