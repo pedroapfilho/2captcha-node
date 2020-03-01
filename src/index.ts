@@ -1,10 +1,10 @@
-import fetch from 'unfetch';
+import fetch from 'isomorphic-unfetch';
 
 import { SolveCaptcha, ResponseCaptcha } from './types';
 
-const postUrl = 'http://2captcha.com/in.php';
+const postUrl = new URL('http://2captcha.com/in.php');
 
-const getUrl = 'http://2captcha.com/res.php';
+const getUrl = new URL('http://2captcha.com/res.php');
 
 const timer = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
@@ -12,11 +12,6 @@ const captchaSolver = (key: string) => {
   const postCaptcha = async (image: string) => {
     const options = {
       method: 'POST',
-      qs: {
-        key: key,
-        json: '1',
-        method: 'base64',
-      },
       headers: {
         'cache-control': 'no-cache',
         'content-type': 'multipart/form-data',
@@ -26,8 +21,16 @@ const captchaSolver = (key: string) => {
       },
     };
 
+    const params = {
+      key: key,
+      json: '1',
+      method: 'base64',
+    };
+
+    postUrl.search = new URLSearchParams(params).toString();
+
     try {
-      const postRequest = await fetch(postUrl, options);
+      const postRequest = await fetch(postUrl.toString(), options);
 
       const JSONPost = await postRequest.json();
 
@@ -41,23 +44,22 @@ const captchaSolver = (key: string) => {
     id: string,
     maxAttempts: number
   ): Promise<ResponseCaptcha> => {
-    const options = {
-      method: 'GET',
-      qs: {
-        key: key,
-        action: 'get',
-        id,
-        json: '1',
-      },
-    };
-
     if (!maxAttempts)
       throw new Error(
         'This request has reached the maximum number of attempts'
       );
 
+    const params = {
+      key: key,
+      action: 'get',
+      id,
+      json: '1',
+    };
+
+    getUrl.search = new URLSearchParams(params).toString();
+
     try {
-      const getRequest = await fetch(getUrl, options);
+      const getRequest = await fetch(getUrl.toString());
 
       const JSONGet = await getRequest.json();
 
@@ -85,17 +87,16 @@ const captchaSolver = (key: string) => {
   };
 
   const getBalance = async (): Promise<string> => {
-    const options = {
-      method: 'GET',
-      qs: {
-        key: key,
-        action: 'getbalance',
-        json: '1',
-      },
+    const params = {
+      key: key,
+      action: 'getbalance',
+      json: '1',
     };
 
+    getUrl.search = new URLSearchParams(params).toString();
+
     try {
-      const getBalance = await fetch(getUrl, options);
+      const getBalance = await fetch(getUrl.toString());
 
       const JSONBalance = await getBalance.json();
 
@@ -109,18 +110,17 @@ const captchaSolver = (key: string) => {
     id: string,
     isValid: boolean
   ): Promise<boolean> => {
-    const options = {
-      method: 'GET',
-      qs: {
-        key: key,
-        action: isValid ? 'reportgood' : 'reportbad',
-        json: '1',
-        id: id,
-      },
+    const params = {
+      key: key,
+      action: isValid ? 'reportgood' : 'reportbad',
+      json: '1',
+      id: id,
     };
 
+    getUrl.search = new URLSearchParams(params).toString();
+
     try {
-      const reportResponse = await fetch(getUrl, options);
+      const reportResponse = await fetch(getUrl.toString());
 
       const JSONBalance = await reportResponse.json();
 
