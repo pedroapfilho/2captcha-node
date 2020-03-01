@@ -1,4 +1,4 @@
-export interface ISolveCaptcha {
+export interface SolveCaptcha {
   image: string;
   maxAttempts?: number;
 }

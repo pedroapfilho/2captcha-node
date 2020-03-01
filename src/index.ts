@@ -1,5 +1,6 @@
-import rp from 'request-promise-native';
-import { ISolveCaptcha, ResponseCaptcha } from './types';
+import fetch from 'unfetch';
+
+import { SolveCaptcha, ResponseCaptcha } from './types';
 
 const postUrl = 'http://2captcha.com/in.php';
 
@@ -11,7 +12,6 @@ const captchaSolver = (key: string) => {
   const postCaptcha = async (image: string) => {
     const options = {
       method: 'POST',
-      url: postUrl,
       qs: {
         key: key,
         json: '1',
@@ -27,9 +27,9 @@ const captchaSolver = (key: string) => {
     };
 
     try {
-      const postRequest = await rp(options);
+      const postRequest = await fetch(postUrl, options);
 
-      const JSONPost = JSON.parse(postRequest);
+      const JSONPost = await postRequest.json();
 
       return JSONPost.request;
     } catch (e) {
@@ -43,7 +43,6 @@ const captchaSolver = (key: string) => {
   ): Promise<ResponseCaptcha> => {
     const options = {
       method: 'GET',
-      url: getUrl,
       qs: {
         key: key,
         action: 'get',
@@ -58,14 +57,14 @@ const captchaSolver = (key: string) => {
       );
 
     try {
-      const getRequest = await rp(options);
+      const getRequest = await fetch(getUrl, options);
 
-      const JSONGet = JSON.parse(getRequest);
+      const JSONGet = await getRequest.json();
 
       if (JSONGet.status === 1) {
         return {
           id: id,
-          text: JSONGet.request
+          text: JSONGet.request,
         };
       }
 
@@ -77,7 +76,7 @@ const captchaSolver = (key: string) => {
     }
   };
 
-  const solveCaptcha = async ({ image, maxAttempts = 60 }: ISolveCaptcha) => {
+  const solveCaptcha = async ({ image, maxAttempts = 60 }: SolveCaptcha) => {
     const id = await postCaptcha(image);
 
     await timer(5000);
@@ -88,7 +87,6 @@ const captchaSolver = (key: string) => {
   const getBalance = async (): Promise<string> => {
     const options = {
       method: 'GET',
-      url: getUrl,
       qs: {
         key: key,
         action: 'getbalance',
@@ -97,9 +95,9 @@ const captchaSolver = (key: string) => {
     };
 
     try {
-      const getBalance = await rp(options);
+      const getBalance = await fetch(getUrl, options);
 
-      const JSONBalance = JSON.parse(getBalance);
+      const JSONBalance = await getBalance.json();
 
       return JSONBalance.request;
     } catch (e) {
@@ -107,24 +105,26 @@ const captchaSolver = (key: string) => {
     }
   };
 
-  const reportCaptcha = async (id: string, isValid: boolean): Promise<boolean> => {
+  const reportCaptcha = async (
+    id: string,
+    isValid: boolean
+  ): Promise<boolean> => {
     const options = {
-      method: "GET",
-      url: getUrl,
+      method: 'GET',
       qs: {
         key: key,
-        action: isValid ? "reportgood":"reportbad",
-        json: "1",
-        id: id
-      }
+        action: isValid ? 'reportgood' : 'reportbad',
+        json: '1',
+        id: id,
+      },
     };
 
     try {
-      const reportResponse = await rp(options);
+      const reportResponse = await fetch(getUrl, options);
 
-      const JSONBalance = JSON.parse(reportResponse);
+      const JSONBalance = await reportResponse.json();
 
-      return JSONBalance.request ? true:false;
+      return JSONBalance.request ? true : false;
     } catch (e) {
       throw new Error(e);
     }
