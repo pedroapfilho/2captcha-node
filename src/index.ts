@@ -16,9 +16,9 @@ const captchaSolver = (key: string) => {
         'cache-control': 'no-cache',
         'content-type': 'multipart/form-data',
       },
-      formData: {
+      body: JSON.stringify({
         body: image,
-      },
+      }),
     };
 
     const params = {
