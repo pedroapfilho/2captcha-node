@@ -1,8 +1,10 @@
 <h1 align="center">Welcome to 2captcha-node 👋</h1>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/2captcha-node"><img alt="NPM version" src="https://badge.fury.io/js/2captcha-node.svg"></a>
-  <a href="https://travis-ci.com/pedroapfilho/2captcha-node"><img alt="TRAVIS version" src="https://travis-ci.com/pedroapfilho/2captcha-node.svg?branch=master"></a>
+  <a href="https://www.npmjs.com/package/2captcha-node"><img alt="NPM version" src="https://img.shields.io/npm/v/2captcha-node"></a>
+  <a href="https://bundlephobia.com/result?p=2captcha-node"><img alt="Bundle size" src="https://img.shields.io/bundlephobia/minzip/2captcha-node"></a>
+  <a href="https://david-dm.org/pedroapfilho/2captcha-nodee"><img alt="Dependencies" src="https://img.shields.io/david/pedroapfilho/2captcha-node"></a>
+  <img alt="MIT" src="https://img.shields.io/github/license/pedroapfilho/2captcha-node">
 </p>
 
 > A NodeJS wrapper to solve image captchas with 2captcha
@@ -37,7 +39,7 @@ const options = {
   maxAttempts: 60, // Optional
 };
 
-const { id, text} = await captcha.solve(options);
+const { id, text } = await captcha.solve(options);
 ```
 
 And this solvedCaptcha will return object, with captcha id and captcha text
