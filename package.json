@@ -1,6 +1,6 @@
 {
   "name": "2captcha-node",
-  "version": "1.4.1",
+  "version": "2.0.0",
   "description": "A NodeJS wrapper to solve image captchas with 2captcha",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -24,10 +24,10 @@
   "devDependencies": {
     "@types/request": "^2.48.4",
     "@types/request-promise-native": "^1.0.17",
-    "husky": "^4.2.1",
+    "husky": "^4.2.3",
     "tsdx": "^0.12.3",
-    "tslib": "^1.10.0",
-    "typescript": "^3.7.5"
+    "tslib": "^1.11.1",
+    "typescript": "^3.8.3"
   },
   "typings": "dist/index.d.ts",
   "scripts": {
@@ -49,7 +49,6 @@
     "trailingComma": "es5"
   },
   "dependencies": {
-    "request": "^2.88.0",
-    "request-promise-native": "^1.0.8"
+    "unfetch": "^4.1.0"
   }
 }
