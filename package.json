@@ -26,7 +26,7 @@
     "@types/request-promise-native": "^1.0.17",
     "husky": "^4.2.3",
     "tsdx": "^0.13.1",
-    "tslib": "^1.11.1",
+    "tslib": "^2.0.0",
     "typescript": "^3.8.3"
   },
   "typings": "dist/index.d.ts",
