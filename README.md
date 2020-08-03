@@ -15,7 +15,11 @@ You will need a `2Captcha API key`
 ## Install
 
 ```sh
-npm install
+npm install 2captcha-node
+
+or
+
+yarn add 2captcha-node
 ```
 
 ## Usage
