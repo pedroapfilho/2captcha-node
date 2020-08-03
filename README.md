@@ -3,7 +3,7 @@
 <p align="center">
   <a href="https://www.npmjs.com/package/2captcha-node"><img alt="NPM version" src="https://img.shields.io/npm/v/2captcha-node"></a>
   <a href="https://bundlephobia.com/result?p=2captcha-node"><img alt="Bundle size" src="https://img.shields.io/bundlephobia/minzip/2captcha-node"></a>
-  <a href="https://david-dm.org/pedroapfilho/2captcha-nodee"><img alt="Dependencies" src="https://img.shields.io/david/pedroapfilho/2captcha-node"></a>
+  <a href="https://david-dm.org/pedroapfilho/2captcha-node"><img alt="Dependencies" src="https://img.shields.io/david/pedroapfilho/2captcha-node"></a>
   <img alt="MIT" src="https://img.shields.io/github/license/pedroapfilho/2captcha-node">
 </p>
 
