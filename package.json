@@ -22,8 +22,7 @@
   "homepage": "https://github.com/pedroapfilho/2captcha-node#readme",
   "module": "dist/captcha-node.esm.js",
   "devDependencies": {
-    "@types/request": "^2.48.5",
-    "@types/request-promise-native": "^1.0.17",
+    "@types/node-fetch": "^2.5.7",
     "husky": "^4.2.5",
     "tsdx": "^0.13.2",
     "tslib": "^2.0.0",
@@ -49,6 +48,6 @@
     "trailingComma": "es5"
   },
   "dependencies": {
-    "isomorphic-unfetch": "^3.0.0"
+    "node-fetch": "^2.6.0"
   }
 }
