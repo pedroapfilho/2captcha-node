@@ -78,7 +78,10 @@ const captchaSolver = (key: string) => {
     }
   };
 
-  const solveCaptcha = async ({ image, maxAttempts = 60 }: SolveCaptcha) => {
+  const solve = async ({
+    image,
+    maxAttempts = 60,
+  }: SolveCaptcha): Promise<ResponseCaptcha> => {
     const id = await postCaptcha(image);
 
     await timer(5000);
@@ -86,7 +89,7 @@ const captchaSolver = (key: string) => {
     return getCaptcha(id, maxAttempts);
   };
 
-  const getBalance = async (): Promise<string> => {
+  const balance = async (): Promise<string> => {
     const params = {
       key: key,
       action: 'getbalance',
@@ -106,10 +109,7 @@ const captchaSolver = (key: string) => {
     }
   };
 
-  const reportCaptcha = async (
-    id: string,
-    isValid: boolean
-  ): Promise<boolean> => {
+  const report = async (id: string, isValid: boolean): Promise<boolean> => {
     const params = {
       key: key,
       action: isValid ? 'reportgood' : 'reportbad',
@@ -131,9 +131,9 @@ const captchaSolver = (key: string) => {
   };
 
   return {
-    solve: solveCaptcha,
-    balance: getBalance,
-    report: reportCaptcha,
+    solve,
+    balance,
+    report,
   };
 };
 
